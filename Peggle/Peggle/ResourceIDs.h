@@ -6,8 +6,13 @@ namespace Texture
 {
 	enum ID
 	{
-		ELEPHANT_DE_MER,
-		POW_POW_POW
+		BASKET,
+		RED_ORB,
+		BLUE_ORB,
+		BALL,
+		CANNON,
+		BACKGROUND,
+		OVERLAY		
 	};
 }
 

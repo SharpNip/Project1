@@ -20,6 +20,7 @@ private:
 	void LoadAssets();
 
 	Sprite* basket;
+
 	Sprite* redOrb;
 	Sprite* blueOrb;
 	Sprite* ball;

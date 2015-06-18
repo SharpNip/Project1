@@ -1,0 +1,17 @@
+#pragma once
+#include "Sprite.h"
+
+//////////////////////////////////////////////////////////////////
+// Background:
+//  -> This takes care of creating and placing a background image
+//////////////////////////////////////////////////////////////////
+
+class Background :
+	public Sprite
+{
+public:
+
+	Background();
+	~Background();
+};
+

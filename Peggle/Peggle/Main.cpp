@@ -7,7 +7,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance,
 	HINSTANCE prevHInstance, 
 	LPTSTR cmd, int showCmd)
 {
-	Engine* engine = new Engine(hInstance, "Nick POtvin - Peggle");
+	Engine* engine = new Engine(hInstance, "Nick Potvin - Peggle");
 	gEngine = engine;
 
 	engine->Init();

@@ -17,9 +17,14 @@ public:
 	PBall();
 	~PBall();
 
+	void Fall(float dt);
+
+
 private:
 	float velocity;
 
+	const float GRAVITY = 9.81f;
+	
 
 };
 

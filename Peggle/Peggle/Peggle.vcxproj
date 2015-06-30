@@ -99,6 +99,7 @@
     <ClInclude Include="Basket.h" />
     <ClInclude Include="BlueOrb.h" />
     <ClInclude Include="Cannon.h" />
+    <ClInclude Include="Items.h" />
     <ClInclude Include="Overlay.h" />
     <ClInclude Include="PBall.h" />
     <ClInclude Include="Peggle.h" />

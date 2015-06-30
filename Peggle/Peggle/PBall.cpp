@@ -9,3 +9,8 @@ PBall::PBall()
 PBall::~PBall()
 {
 }
+
+void PBall::Fall(float dt)
+{
+	velocity += GRAVITY * dt;
+}

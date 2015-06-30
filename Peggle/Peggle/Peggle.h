@@ -16,8 +16,6 @@ public:
 	void Draw();
 	void Stop();
 
-	const float GRAVITY = 9.78f;
-
 private:
 	void LoadAssets();
 

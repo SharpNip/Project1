@@ -17,10 +17,12 @@ public:
 	Cannon();
 	~Cannon();
 
-	D3DXMATRIX GetRotation() { return rotation; }
+	void Init();
+
+	void Rotate();
+	void Shoot();
 
 private:
-	D3DXMATRIX offset;
 	D3DXMATRIX anchorPoint;
 	D3DXMATRIX rotation;
 };

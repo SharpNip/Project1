@@ -12,33 +12,34 @@ Peggle::Peggle()
 	Textures->LoadTexture(Texture::RED_ORB, "Sprites/RedBall.png");
 	Textures->LoadTexture(Texture::BACKGROUND, "Sprites/Background.png");
 	
-	basket		= new Sprite(Texture::BASKET);
-	redOrb		= new Sprite(Texture::RED_ORB);
-	blueOrb		= new Sprite(Texture::BLUE_ORB);	
-	ball		= new Sprite(Texture::BALL);
-	cannon		= new Sprite(Texture::CANNON);
+	//basket		= new Sprite(Texture::BASKET);
+	//redOrb		= new Sprite(Texture::RED_ORB);
+	//blueOrb		= new Sprite(Texture::BLUE_ORB);	
+	//ball		= new Sprite(Texture::BALL);
+	//cannon		= new Sprite(Texture::CANNON);
+	//background = new Sprite(Texture::BACKGROUND);
 	overlay		= new Sprite(Texture::OVERLAY);
-	background	= new Sprite(Texture::BACKGROUND);
+	
 
 }
 
 Peggle::~Peggle()
 {
-	delete basket;
-	delete redOrb;
-	delete blueOrb;
-	delete ball;
-	delete cannon;
+	//delete basket;
+	//delete redOrb;
+	//delete blueOrb;
+	//delete ball;
+	//delete cannon;
 	delete overlay;
-	delete background;
+	//delete background;
 
-	basket = nullptr;
-	redOrb = nullptr;
-	blueOrb = nullptr;
-	ball = nullptr;
-	cannon = nullptr;
+	//basket = nullptr;
+	//redOrb = nullptr;
+	//blueOrb = nullptr;
+	//ball = nullptr;
+	//cannon = nullptr;
 	overlay = nullptr;
-	background = nullptr;
+	//background = nullptr;
 
 
 }

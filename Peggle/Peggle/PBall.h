@@ -1,11 +1,25 @@
 #pragma once
-#include "Sprite.h"
+#include "Ball.h"
+
+////////////////////////////////////////////////////////////////////
+// Player Ball Class:
+// ->	Class for the player's ball.
+//		Launched using the rotation of the Cannon class
+//		It's affected by Gravity
+//		It must also have a collider to detect collision between 
+//		itself and the blue/red orbs
+////////////////////////////////////////////////////////////////////
 
 class PBall :
-	public Sprite
+	public Ball
 {
 public:
 	PBall();
 	~PBall();
+
+private:
+	float velocity;
+
+
 };
 

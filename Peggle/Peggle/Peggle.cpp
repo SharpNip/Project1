@@ -22,7 +22,7 @@ Peggle::Peggle()
 	//overlay		= new Sprite(Texture::OVERLAY);
 	D3DXVECTOR3 anchor(cannon->GetTextureInfos()->infos.Width / 2, cannon->GetTextureInfos()->infos.Height / 2, 0.0f);
 	
-	cannon->SetPivot(anchor);
+	cannon->SetPivot(&anchor);
 	
 	cannon->SetRotation(0.0f, 0.0f, D3DX_PI / 2);
 }
@@ -66,6 +66,10 @@ void Peggle::Update()
 		cannon->SetVisible(true);
 	}
 
+	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
+	{
+		std::cout << "Pew" << std::endl; 
+	}
 
 }
 

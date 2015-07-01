@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\..\..\Bart_Project\dependencies\irrKlang-1.5.0\include;..\..\..\Bart_Project\src\Core;..\..\..\Bart_Project\src\App;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\..\Bart_Project\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\..\..\Bart_Project\src\App;..\..\..\Bart_Project\src\Core;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\..\bart-dx-engine-e15\dependencies\irrKlang-1.5.0\include;..\..\..\bart-dx-engine-e15\src\Core;..\..\..\bart-dx-engine-e15\src\App;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\..\bart-dx-engine-e15\dependencies\irrKlang-1.5.0\lib\Win32-visualStudio;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\..\..\bart-dx-engine-e15\src\App;..\..\..\bart-dx-engine-e15\src\Core;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -99,7 +99,7 @@
     <ClInclude Include="Basket.h" />
     <ClInclude Include="BlueOrb.h" />
     <ClInclude Include="Cannon.h" />
-    <ClInclude Include="Items.h" />
+    <ClInclude Include="AllAssets.h" />
     <ClInclude Include="Overlay.h" />
     <ClInclude Include="PBall.h" />
     <ClInclude Include="Peggle.h" />
@@ -107,10 +107,10 @@
     <ClInclude Include="ResourceIDs.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Bart_Project\src\App\App.vcxproj">
+    <ProjectReference Include="..\..\..\bart-dx-engine-e15\src\App\App.vcxproj">
       <Project>{c5b44902-a125-46ca-b7f1-cd8d6a17394c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Bart_Project\src\Core\Core.vcxproj">
+    <ProjectReference Include="..\..\..\bart-dx-engine-e15\src\Core\Core.vcxproj">
       <Project>{cacb57eb-0de4-4e3f-b855-1cebd28a0c4f}</Project>
     </ProjectReference>
   </ItemGroup>

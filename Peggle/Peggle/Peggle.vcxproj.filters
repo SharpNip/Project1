@@ -77,7 +77,7 @@
     <ClInclude Include="Ball.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Items.h">
+    <ClInclude Include="AllAssets.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

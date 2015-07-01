@@ -23,7 +23,8 @@ public:
 	void Shoot();
 
 private:
-	D3DXMATRIX anchorPoint;
-	D3DXMATRIX rotation;
+	D3DXVECTOR3 mAnchorPoint;
+	D3DXVECTOR2 mRot;
+
 };
 

@@ -19,12 +19,18 @@ public:
 
 	void Init();
 
-	void Rotate();
+	void Rotate(float dt);
 	void Shoot();
+	void Update();
 
 private:
 	D3DXVECTOR3 mAnchorPoint;
-	D3DXVECTOR2 mRot;
+	float rotation;
+	D3DXVECTOR3 canDirect;
+
+	const float ROT_SPEED;
+	const float MAX_ROT_L;
+	const float MAX_ROT_R;
 
 };
 

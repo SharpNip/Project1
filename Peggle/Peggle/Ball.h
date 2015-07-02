@@ -1,5 +1,6 @@
 #pragma once
 #include "Sprite.h"
+#include "ResourceIDs.h"
 
 ////////////////////////////////////////////////////////////////////
 // Balls Class:
@@ -13,14 +14,12 @@ class Ball :
 	public Sprite
 {
 public:
-	Ball();
+	 Ball();
 	~Ball();
 
-	D3DXVECTOR3 GetPosition() { return mScreenPos; }
-	void SetPosition(float x, float y, float z)
-	{
-		mScreenPos.x = x; mScreenPos.y = y; mScreenPos.z = z;
-	}
+	void Update();
+	void Fall(float deltaTime);
+	bool Collide();
 
 private:
 	D3DXVECTOR3 mScreenPos;

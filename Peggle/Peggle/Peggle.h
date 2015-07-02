@@ -32,7 +32,7 @@ private:
 	//Basket* basket;
 	//RedOrb* redOrb;
 	//BlueOrb* blueOrb;
-	//Ball* ball;
+	Ball* ball;
 	Cannon* cannon;
 	//Overlay* overlay;
 	Background* background;

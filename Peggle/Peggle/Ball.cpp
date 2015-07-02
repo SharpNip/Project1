@@ -2,7 +2,10 @@
 
 
 Ball::Ball()
+	: Sprite(Texture::ID::BALL)
 {
+
+
 }
 
 

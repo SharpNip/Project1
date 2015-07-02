@@ -1,5 +1,6 @@
 #pragma once
 #include "Sprite.h"
+#include "ResourceIDs.h"
 
 ////////////////////////////////////////////////////////////////////
 // Basket Class
@@ -17,9 +18,12 @@ public:
 	Basket();
 	~Basket();
 
+	void Update();
+	void Patrol(float deltaTime);
+
 private:
 	// Middle anchor point for the sprite
-	D3DXVECTOR3 mCenter;
+	D3DXVECTOR3 mAnchor;
 	// constant of speed (which will probably be a MAX speed.
 	const float SPEED;
 	// Suggestions: use the built-in function lerp to have it move from a to be

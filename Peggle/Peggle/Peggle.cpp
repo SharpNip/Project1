@@ -5,21 +5,21 @@ Peggle::Peggle()
 {
 	LoadAssets();
 	
-	//basket		= new Sprite(Texture::BASKET);
+	
 	//redOrb		= new Sprite(Texture::RED_ORB);
 	//blueOrb		= new Sprite(Texture::BLUE_ORB);	
 	
 	background  = new Background();
 	cannon		= new Cannon();
 	ball		= new Ball();
-	
+	basket		= new Basket();
 	//overlay		= new Sprite(Texture::OVERLAY);
 
 }
 
 Peggle::~Peggle()
 {
-	//delete basket;
+	delete basket;
 	//delete redOrb;
 	//delete blueOrb;
 	delete ball;
@@ -27,7 +27,7 @@ Peggle::~Peggle()
 	//delete overlay;
 	delete background;
 
-	//basket = nullptr;
+	basket = nullptr;
 	//redOrb = nullptr;
 	//blueOrb = nullptr;
 	ball = nullptr;
@@ -43,15 +43,6 @@ void Peggle::Start()
 
 void Peggle::Update()
 {
-	float deltaTime = gTimer->GetDeltaTime();
-	
-	
-	
-	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
-	{
-		
-	}
-
 }
 
 void Peggle::Draw()

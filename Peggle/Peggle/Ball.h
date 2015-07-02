@@ -19,10 +19,14 @@ public:
 
 	void Update();
 	void Fall(float deltaTime);
-	bool Collide();
+	//bool Collide();
+	void Instantiate();
+	void Desintegrate();
 
 private:
 	D3DXVECTOR3 mScreenPos;
-	bool inPlay;
+	bool mInPlay;
+
+	D3DXVECTOR2 mDirection;
 
 };

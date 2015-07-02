@@ -26,7 +26,12 @@ private:
 	D3DXVECTOR3 mAnchor;
 	// constant of speed (which will probably be a MAX speed.
 	const float SPEED;
+
+	float leftBound;
+	float rightBound;
 	// Suggestions: use the built-in function lerp to have it move from a to be
+	const D3DXVECTOR2 mStartPos;
+	D3DXVECTOR2 mPos;
 
 };
 

@@ -11,9 +11,9 @@ Cannon::Cannon()
 	, ROT_SPEED(6.0f)
 {
 	mAnchorPoint = D3DXVECTOR3(0, GetTextureInfos()->infos.Height/2, 0.0f);
-	SetPivot(&mAnchorPoint);
+	SetPivot(mAnchorPoint);
 	rotation = -(D3DX_PI / 2);
-	SetRotation(0.0, 0.0, rotation);
+	SetRotationRad(0.0, 0.0, rotation);
 	SetPosition(0, (gApp->GetParam().BackBufferHeight/2));
 }
 
@@ -52,7 +52,7 @@ void Cannon::Rotate(float dt)
 			rotation = MAX_ROT_R;
 		}
 	}
-	this->SetRotation(0, 0, rotation);
+	this->SetRotationRad(0, 0, rotation);
 	canDirect = D3DXVECTOR3(-sinf(rotation), cosf(rotation), 0.0f);	
 }
 void Cannon::Shoot()

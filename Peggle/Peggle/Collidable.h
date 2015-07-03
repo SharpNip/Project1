@@ -5,6 +5,7 @@ class Collidable :
 {
 public:
 	Collidable();
+	Collidable(Sprite());
 	virtual ~Collidable();
 
 	D3DXVECTOR3 GetPosition() { return mScreenPos; }

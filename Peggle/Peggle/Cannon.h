@@ -1,5 +1,6 @@
 #pragma once
 #include "Sprite.h"
+#include "Ball.h"
 
 ////////////////////////////////////////////////////////////////////
 // Cannon Class:
@@ -20,14 +21,18 @@ public:
 	void Init();
 
 	void Rotate(float dt);
-	void Shoot();
+	void Shoot(float dt);
 	void Update();
 
 private:
-	D3DXVECTOR3 mAnchorPoint;
+	Ball* ball;
+	D3DXVECTOR3 mAnchor;
+	D3DXVECTOR3 mPosition;
 	float rotation;
-	D3DXVECTOR3 canDirect;
+	D3DXVECTOR3 cannonDirection;
 
+	
+	// Constants for the Cannon
 	const float ROT_SPEED;
 	const float MAX_ROT_L;
 	const float MAX_ROT_R;

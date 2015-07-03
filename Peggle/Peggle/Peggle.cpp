@@ -11,7 +11,7 @@ Peggle::Peggle()
 	
 	background  = new Background();
 	cannon		= new Cannon();
-	ball		= new Ball();
+	//ball		= new Ball();
 	basket		= new Basket();
 	//overlay		= new Sprite(Texture::OVERLAY);
 
@@ -22,7 +22,7 @@ Peggle::~Peggle()
 	delete basket;
 	//delete redOrb;
 	//delete blueOrb;
-	delete ball;
+	//delete ball;
 	delete cannon;
 	//delete overlay;
 	delete background;
@@ -30,7 +30,7 @@ Peggle::~Peggle()
 	basket = nullptr;
 	//redOrb = nullptr;
 	//blueOrb = nullptr;
-	ball = nullptr;
+	//ball = nullptr;
 	cannon = nullptr;
 	//overlay = nullptr;
 	background = nullptr;

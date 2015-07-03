@@ -24,12 +24,19 @@ public:
 private:
 	// Middle anchor point for the sprite
 	D3DXVECTOR3 mAnchor;
-	// constant of speed (which will probably be a MAX speed.
+	
+	// Constant of speed 
 	const float SPEED;
 
+	// Takes care of the patrolling effect of the basket at the bottom
+	// True-> is moving towards the left / False-> towards the right
+	bool isGoingLeft;
+
+	// Les deux cotés de l'écran
 	float leftBound;
 	float rightBound;
-	// Suggestions: use the built-in function lerp to have it move from a to be
+	
+	// Sets the starting position and uses that to then affect the movement
 	const D3DXVECTOR2 mStartPos;
 	D3DXVECTOR2 mPos;
 

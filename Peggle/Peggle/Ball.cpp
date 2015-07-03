@@ -9,19 +9,21 @@ Ball::Ball()
 	SetPivot(mAnchor);
 	SetPosition(0, 0);
 	std::cout << "Cout!" << std::endl; 
-
-	
 }
-Ball::Ball(D3DXVECTOR3 position)
+
+Ball::Ball(D3DXVECTOR3 position, float angle)
 	: Sprite(Texture::ID::BALL)
 	, speed(0)
 	, mGRAVITY(9.82f)
-	, mPosition(position)
+	, angle(angle)
 
 {
 	mAnchor = D3DXVECTOR3(GetTextureInfos()->infos.Height / 2, GetTextureInfos()->infos.Width / 2, 0);
 	SetPivot(mAnchor);
-	SetPosition(mPosition.x, mPosition.y);
+
+	SetPosition(position.x, position.y);
+
+	mDirection = D3DXVECTOR2(cos(angle), sin(angle));
 
 	speed = 35;
 }
@@ -33,25 +35,16 @@ Ball::~Ball()
 
 void Ball::Update()
 {
-	Fall(gTimer->GetDeltaTime());
-}
+	float dt = gTimer->GetDeltaTime();
 
-void Ball::Instantiate(D3DXVECTOR3 direction)
-{
-	this->SetPosition(direction.x, direction.y);
-	this->SetVisible(true);
-	mDirection.x = direction.x;
-	mDirection.y = direction.y;
+	D3DXVECTOR3 currentPos = GetPosition();
+
+	currentPos.x += mDirection.x * speed * dt;
+	currentPos.y += mDirection.y * speed * dt;
+
+	SetPosition(currentPos.x, currentPos.y);
 }
 
 void Ball::Desintegrate()
 {
-}
-
-void Ball::Fall(float deltaTime)
-{
-	mDirection.x += speed * deltaTime;
-	mDirection.y += speed * deltaTime;
-
-	SetPosition(mDirection.x, mDirection.y);
 }

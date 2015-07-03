@@ -25,13 +25,11 @@ public:
 	void Update();
 
 private:
-	Ball* ball;
+	//Ball* ball;
 	D3DXVECTOR3 mAnchor;
-	D3DXVECTOR3 mPosition;
 	float rotation;
 	D3DXVECTOR3 cannonDirection;
 
-	
 	// Constants for the Cannon
 	const float ROT_SPEED;
 	const float MAX_ROT_L;

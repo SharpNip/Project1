@@ -15,24 +15,21 @@ class Ball :
 {
 public:
 	Ball();
-	Ball(D3DXVECTOR3 position);
+	Ball(D3DXVECTOR3 position, float angle);
 	~Ball();
 
 	void Update();
 	void Fall(float deltaTime);
 	//bool CheckForCollision();
-	void Instantiate(D3DXVECTOR3 pos);
 	void Desintegrate();
 
 private:
-	D3DXVECTOR3 mAnchor;
-	D3DXVECTOR3 mPosition;
-	
-	bool mInPlay;
-
-
-	D3DXVECTOR2 mDirection;
-	
-	float speed;
 	const float mGRAVITY;
+
+	bool mInPlay;
+	float speed;
+	float angle;
+	
+	D3DXVECTOR3 mAnchor;
+	D3DXVECTOR2 mDirection;
 };

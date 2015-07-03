@@ -9,14 +9,15 @@ Cannon::Cannon()
 	, MAX_ROT_L(-(D3DX_PI))
 	, MAX_ROT_R(0)
 	, ROT_SPEED(6.0f)
-	, mPosition(0,0,0)
 {
 	mAnchor = D3DXVECTOR3(0, GetTextureInfos()->infos.Height / 2, 0.0f);
 	SetPivot(mAnchor);
+
 	rotation = -(D3DX_PI / 2);
 	SetRotationRad(0.0, 0.0, rotation);
-	mPosition = D3DXVECTOR3(0, (gApp->GetParam().BackBufferHeight / 2), 0);
-	SetPosition(mPosition.x, mPosition.y);
+
+	int height = gApp->GetParam().BackBufferHeight;
+	SetPosition(0.f, height/2);
 }
 
 Cannon::~Cannon()
@@ -28,9 +29,7 @@ void Cannon::Update()
 {
 	Rotate(gTimer->GetDeltaTime());
 	Shoot(gTimer->GetDeltaTime());
-
 }
-
 
 void Cannon::Rotate(float deltaTime)
 {
@@ -57,13 +56,18 @@ void Cannon::Rotate(float deltaTime)
 		}
 	}
 	this->SetRotationRad(0, 0, rotation);
-	cannonDirection = D3DXVECTOR3(-sinf(rotation), cosf(rotation), 0.0f);
+	
 }
 void Cannon::Shoot(float deltaTime)
 {
 	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
 	{
-		std::cout << "Shoot" << std::endl;
-	}
+		//std::cout << "X: " << GetPosition().x << ", Y: " << GetPosition().y << ", Z:" << GetPosition().z << std::endl;
 
-}
+		cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
+		D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
+
+		Ball* b = new Ball(GetPosition() + offset, rotation);
+
+	}
+ }

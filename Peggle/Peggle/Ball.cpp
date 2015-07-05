@@ -1,100 +1,118 @@
 #include "Ball.h"
 
 Ball::Ball()
-	: Sprite(Texture::ID::BALL)
+	: Collidable(Texture::ID::BALL)
 	, speed(0)
 	, angle(0)
 	, RADIUS(GetTextureInfos()->infos.Height/2)
+	, applyGravity(false)
+	, RIGHT_WALL(gApp->GetParam().BackBufferWidth/2)
+	, LEFT_WALL(-static_cast<float>(gApp->GetParam().BackBufferWidth/2))
+	//THis is just a debug thing to check if it works.
+	, check("WORKS!")
 {
-	mAnchor = D3DXVECTOR3(GetTextureInfos()->infos.Height / 2, GetTextureInfos()->infos.Width / 2, 0);
-	SetPivot(mAnchor);
-	SetPosition(0, 0);
-	std::cout << "Cout!" << std::endl; 
 	this->SetID(Components::BALL);
+	mAnchor = D3DXVECTOR3(GetTextureInfos()->infos.Height / 2, GetTextureInfos()->infos.Width / 2, 0);
+	this->Sprite::SetPivot(mAnchor);
+	this->Sprite::SetPosition(0, 0);
 }
 
 Ball::Ball(D3DXVECTOR3 position, float angle)
-	: Sprite(Texture::ID::BALL)
+	: Collidable(Texture::ID::BALL)
 	, speed(0)
 	, angle(angle)
 	, RADIUS(GetTextureInfos()->infos.Height / 2)
+	, applyGravity(false)
+	, RIGHT_WALL(gApp->GetParam().BackBufferWidth/2)
+	, LEFT_WALL(-static_cast<float>(gApp->GetParam().BackBufferWidth/2))
+	, mHitBasket(false)
 {
 	this->SetID(Components::BALL);
 	mAnchor = D3DXVECTOR3(GetTextureInfos()->infos.Height / 2, GetTextureInfos()->infos.Width / 2, 0);
-	SetPivot(mAnchor);
-	SetPosition(position.x, position.y);
+	this->Sprite::SetPivot(mAnchor);
+	this->Sprite::SetPosition(position.x, position.y);
 	mDirection = D3DXVECTOR2(cos(angle), sin(angle));
 	collider = new CCircle(this, 0, 0, RADIUS);
+	mInPlay = true;
 
-	speed = 0;
+	speed = 200;
 }
 
 
 Ball::~Ball()
 {
+	delete collider;
+	collider = nullptr;
 }
 
 void Ball::Update()
 {
 	float deltaTime = gTimer->GetDeltaTime();
-	
+
 	Fall(deltaTime);
-	//mDirection = CheckForCollision();
+	
+	CheckForCollision();
 
 }
 
 void Ball::Desintegrate()
 {
-	this->SetVisible(false);
-	this->mInPlay = false;
+	this->Sprite::SetVisible(false);
+	mInPlay = false;
 }
 
 void Ball::Fall(float deltaTime)
 {
-	speed += (GRAVITY * deltaTime);
 	D3DXVECTOR3 currentPos = GetPosition();
 
-	currentPos.x += mDirection.x * speed;
-	currentPos.y += mDirection.y * speed;
+	if (applyGravity)
+	{
+		mDirection.y -= (GRAVITY * deltaTime);
+	}
+	if ((GetPosition().x - RADIUS) > LEFT_WALL)
+	{
+		mDirection = D3DXVECTOR2(mDirection.x *-1, mDirection.y);
+		applyGravity = true;
+	}
+	if ((GetPosition().x + RADIUS) < RIGHT_WALL)
+	{
+		mDirection = D3DXVECTOR2(mDirection.x *-1, mDirection.y);
+		applyGravity = true;
+	}
 
-	SetPosition(currentPos.x, currentPos.y);
+	currentPos.x += mDirection.x * speed * deltaTime;
+	currentPos.y += mDirection.y * speed * deltaTime;
+
+	this->Sprite::SetPosition(currentPos.x, currentPos.y);
+	this->collider->SetPosition(currentPos.x, currentPos.y);
 }
-D3DXVECTOR2 Ball::CheckForCollision()
+void Ball::CheckForCollision()
 {
 	D3DXVECTOR2 resultVector = mDirection;
-	//Go through each collider collided with though the LookForCollision Function
 	for each (Collider* col in collider->LookForCollisions())
 	{
-		//If one of the collider is a block
-		if (col->GetGameObject()->GetID() == Components::WALL)
-		{
-			//Consider that collider's component a block and make him shout
-			mDirection = D3DXVECTOR2(mDirection.x *-1, mDirection.y);
-		}
 		if (col->GetGameObject()->GetID() == Components::ORB)
 		{
-			//Consider that collider's component a block and make him shout
-			D3DXVECTOR3 otherPos = static_cast<Collidable*>(col->GetGameObject())->GetPosition();
+			D3DXVECTOR3 otherPos = static_cast<BlueOrb*>(col->GetGameObject())->GetPosition();
+			float otherRad = static_cast<BlueOrb*>(col->GetGameObject())->GetRadius();
 			D3DXVECTOR2 myPos = mDirection;
-			resultVector = D3DXVECTOR2(otherPos.x - myPos.x, otherPos.y - myPos.y);
+			resultVector = D3DXVECTOR2(cos(myPos.x - otherPos.x), sin(myPos.y - otherPos.y));
 			D3DXVec2Normalize(&resultVector, &resultVector);
+			mDirection = resultVector;
 		}
 		if (col->GetGameObject()->GetID() == Components::BASKET)
 		{
-			//Consider that collider's component a block and make him shout
-			//static_cast<Collidable*>(col->GetGameObject())->Shout();
-		}
-		if (col->GetGameObject()->GetID() == Components::BOTTOM)
-		{
-			//Consider that collider's component a block and make him shout
-			
+			mHitBasket = true;
+			Desintegrate();
 		}
 	}
-	return resultVector;
 }
 
-void Ball::Fired()
+void Ball::Fire(D3DXVECTOR3 superPos, float newAngle)
 {
-	this->SetVisible(true);
-	this->mInPlay = true;
+	this->Sprite::SetVisible(true);
+	this->Sprite::SetPosition(superPos.x, superPos.y);
+	this->mDirection = D3DXVECTOR2(cos(newAngle), sin(newAngle));
+	mInPlay = true;
+	mHitBasket = false;
 }

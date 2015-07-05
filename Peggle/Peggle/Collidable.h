@@ -1,5 +1,7 @@
 #pragma once
 #include "Sprite.h"
+#include "CCircle.h"
+#include "CRectangle.h"
 
 
 class Collidable :
@@ -10,14 +12,10 @@ public:
 	Collidable(Texture::ID id);
 	virtual ~Collidable();
 
-	D3DXVECTOR3 GetPosition() { return mScreenPos; }
-	void SetPosition(float x, float y, float z)
-	{
-		mScreenPos.x = x; mScreenPos.y = y; mScreenPos.z = z;
-	}
+	virtual void Update() = 0;
+
 
 private:
-	D3DXVECTOR3 mScreenPos;
 	bool inPlay;
 	bool isHit;
 };

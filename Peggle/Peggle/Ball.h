@@ -1,8 +1,8 @@
 #pragma once
 #include "Sprite.h"
 #include "ResourceIDs.h"
-#include "CCircle.h"
 #include "Collidable.h"
+#include "BlueOrb.h"
 
 ////////////////////////////////////////////////////////////////////
 // Balls Class:
@@ -13,7 +13,7 @@
 ////////////////////////////////////////////////////////////////////
 
 class Ball :
-	public Sprite
+	public Collidable
 {
 public:
 	Ball();
@@ -21,25 +21,37 @@ public:
 	~Ball();
 
 	void Update();
-	void Fall(float deltaTime);
-	D3DXVECTOR2 CheckForCollision();
+	
 	void Desintegrate();
-	void Fired();
+	void Fire(D3DXVECTOR3 superPos, float newAngle);
 
-	CCircle* collider;
-
-	bool mInPlay;
-
+	bool InPlayQuery(){ return mInPlay; }
+	bool HitBasketQuery(){ return mHitBasket; }
+	
 private:
+	void Fall(float deltaTime);
+	void CheckForCollision();
+
 	float speed;
 	float angle;
+
+	std::string check;
+
+	bool applyGravity;
+	bool mInPlay;
+	bool mHitBasket;
+
 	const float RADIUS;
+	const float LEFT_WALL;
+	const float RIGHT_WALL;
 	
 	D3DXVECTOR3 mAnchor;
 	D3DXVECTOR2 mDirection;
+
+	CCircle* collider;
 };
 
 
 #ifndef GRAVITY
-#define GRAVITY 0.0982f
+#define GRAVITY 09.82f
 #endif

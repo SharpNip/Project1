@@ -9,7 +9,8 @@ Collidable::Collidable()
 }
 
 Collidable::Collidable(Texture::ID id)
-	: inPlay(false)
+	: Sprite(id)
+	, inPlay(false)
 	, isHit(false)
 {
 

@@ -22,14 +22,16 @@ public:
 	void Draw();
 	void Stop();
 
+	int GetNumBalls(){ return cannon->GetRemBalls(); }
+
 private:
 	void LoadAssets();
+	void Reset();
 
 	Basket* basket;
-	//RedOrb* redOrb;
-	//BlueOrb* blueOrb;
-	Ball* ball;
 	Cannon* cannon;
-	//Overlay* overlay;
 	Background* background;
+
+	// Static instance to check if the game has been officially started.
+	static bool gameStart;
 };

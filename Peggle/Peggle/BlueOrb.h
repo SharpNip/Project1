@@ -16,10 +16,14 @@ class BlueOrb :
 public:
 	BlueOrb();
 	~BlueOrb();
+	
+	float GetRadius() { return RADIUS; }
+	void Update();
 
 private:
-	
+	CCircle* collider;
 
+	const float RADIUS;
 
 };
 

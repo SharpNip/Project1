@@ -91,7 +91,6 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="Peggle.cpp" />
-    <ClCompile Include="RedOrb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -103,7 +102,6 @@
     <ClInclude Include="Collidable.h" />
     <ClInclude Include="Overlay.h" />
     <ClInclude Include="Peggle.h" />
-    <ClInclude Include="RedOrb.h" />
     <ClInclude Include="ResourceIDs.h" />
   </ItemGroup>
   <ItemGroup>

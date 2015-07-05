@@ -10,6 +10,7 @@ Cannon::Cannon()
 	, MAX_ROT_R(0)
 	, ROT_SPEED(6.0f)
 	, numOfBalls(3)
+	, ball(nullptr)
 {
 	mAnchor = D3DXVECTOR3(0, GetTextureInfos()->infos.Height / 2, 0.0f);
 	SetPivot(mAnchor);
@@ -30,6 +31,7 @@ void Cannon::Update()
 {
 	Rotate(gTimer->GetDeltaTime());
 	Shoot(gTimer->GetDeltaTime());
+	
 }
 
 void Cannon::Rotate(float deltaTime)
@@ -63,9 +65,33 @@ void Cannon::Shoot(float deltaTime)
 {
 	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
 	{
-		cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
-		D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
-		Ball* b = new Ball(GetPosition() + offset, rotation);
-		
+		if (numOfBalls > 0)
+		{
+			if (ball != nullptr)
+			{
+				if (!ball->InPlayQuery())
+				{
+					cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
+					D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
+					ball->Fire(GetPosition() + offset, rotation);
+					if (ball->HitBasketQuery())
+					{
+						numOfBalls++;
+					}
+					else
+					{
+						numOfBalls--;
+					}
+				}
+			}
+			else
+			{
+				cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
+				D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
+				ball = new Ball(GetPosition() + offset, rotation);
+				numOfBalls--;
+			}
+		}
+		std::cout << numOfBalls << std::endl;
 	}
  }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Sprite.h"
 #include "ResourceIDs.h"
+#include "Collidable.h"
 
 ////////////////////////////////////////////////////////////////////
 // Basket Class
@@ -12,7 +13,7 @@
 ////////////////////////////////////////////////////////////////////
 
 class Basket :
-	public Sprite
+	public Collidable
 {
 public:
 	Basket();
@@ -33,12 +34,16 @@ private:
 	bool isGoingLeft;
 
 	// Les deux cotés de l'écran
-	float leftBound;
-	float rightBound;
+	const float LEFT_WALL;
+	const float RIGHT_WALL;
+
+	const float WIDTH;
 	
 	// Sets the starting position and uses that to then affect the movement
-	const D3DXVECTOR2 mStartPos;
-	D3DXVECTOR2 mPos;
+	const D3DXVECTOR3 mStartPos;
+	D3DXVECTOR3 mPos;
+
+	CRectangle* collider;
 
 };
 

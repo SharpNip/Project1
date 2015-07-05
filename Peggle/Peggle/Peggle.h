@@ -33,7 +33,3 @@ private:
 	//Overlay* overlay;
 	Background* background;
 };
-
-#ifndef GRAVITY GRAVITY
-#define GRAVITY 9.82f;
-#endif

@@ -15,7 +15,17 @@ namespace Texture
 		OVERLAY		
 	};
 }
-
+namespace Components
+{
+	enum ID
+	{
+		WALL,
+		BALL,
+		ORB,
+		BASKET,
+		BOTTOM
+	};
+}
 //namespace Sound
 //{
 //	enum ID

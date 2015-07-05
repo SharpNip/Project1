@@ -1,6 +1,8 @@
 #pragma once
 #include "Sprite.h"
 #include "ResourceIDs.h"
+#include "CCircle.h"
+#include "Collidable.h"
 
 ////////////////////////////////////////////////////////////////////
 // Balls Class:
@@ -20,16 +22,24 @@ public:
 
 	void Update();
 	void Fall(float deltaTime);
-	//bool CheckForCollision();
+	D3DXVECTOR2 CheckForCollision();
 	void Desintegrate();
+	void Fired();
 
-private:
-	const float mGRAVITY;
+	CCircle* collider;
 
 	bool mInPlay;
+
+private:
 	float speed;
 	float angle;
+	const float RADIUS;
 	
 	D3DXVECTOR3 mAnchor;
 	D3DXVECTOR2 mDirection;
 };
+
+
+#ifndef GRAVITY
+#define GRAVITY 0.0982f
+#endif

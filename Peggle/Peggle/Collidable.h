@@ -1,11 +1,13 @@
 #pragma once
 #include "Sprite.h"
+
+
 class Collidable :
 	public Sprite
 {
 public:
 	Collidable();
-	Collidable(Sprite());
+	Collidable(Texture::ID id);
 	virtual ~Collidable();
 
 	D3DXVECTOR3 GetPosition() { return mScreenPos; }
@@ -17,6 +19,6 @@ public:
 private:
 	D3DXVECTOR3 mScreenPos;
 	bool inPlay;
-	bool isLit;
+	bool isHit;
 };
 

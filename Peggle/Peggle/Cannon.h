@@ -30,6 +30,8 @@ private:
 	float rotation;
 	D3DXVECTOR3 cannonDirection;
 
+	int numOfBalls;
+
 	// Constants for the Cannon
 	const float ROT_SPEED;
 	const float MAX_ROT_L;

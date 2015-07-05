@@ -9,6 +9,7 @@ Cannon::Cannon()
 	, MAX_ROT_L(-(D3DX_PI))
 	, MAX_ROT_R(0)
 	, ROT_SPEED(6.0f)
+	, numOfBalls(3)
 {
 	mAnchor = D3DXVECTOR3(0, GetTextureInfos()->infos.Height / 2, 0.0f);
 	SetPivot(mAnchor);
@@ -62,12 +63,9 @@ void Cannon::Shoot(float deltaTime)
 {
 	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
 	{
-		//std::cout << "X: " << GetPosition().x << ", Y: " << GetPosition().y << ", Z:" << GetPosition().z << std::endl;
-
 		cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
 		D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
-
 		Ball* b = new Ball(GetPosition() + offset, rotation);
-
+		
 	}
  }

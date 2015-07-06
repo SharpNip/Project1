@@ -15,13 +15,17 @@ class BlueOrb :
 {
 public:
 	BlueOrb();
+	BlueOrb(D3DXVECTOR2 position);
 	~BlueOrb();
 	
-	float GetRadius() { return RADIUS; }
 	void Update();
+	void Crack();
+	void Reset();
 
 private:
 	CCircle* collider;
+	D3DXVECTOR2 mPosition;
+	D3DXVECTOR3 mAnchor;
 
 	const float RADIUS;
 

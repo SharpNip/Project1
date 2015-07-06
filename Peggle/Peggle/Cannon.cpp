@@ -24,16 +24,19 @@ Cannon::Cannon()
 
 Cannon::~Cannon()
 {
-
+	delete ball;
+	ball = nullptr;
 }
 
 void Cannon::Update()
 {
 	Rotate(gTimer->GetDeltaTime());
 	Shoot(gTimer->GetDeltaTime());
-	
+	if (ball != nullptr)
+	{
+		numOfBalls = ball->QueryLives();
+	}
 }
-
 void Cannon::Rotate(float deltaTime)
 {
 	if (gDInput->keyDown(DIKEYBOARD_A))
@@ -74,14 +77,6 @@ void Cannon::Shoot(float deltaTime)
 					cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
 					D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
 					ball->Fire(GetPosition() + offset, rotation);
-					if (ball->HitBasketQuery())
-					{
-						numOfBalls++;
-					}
-					else
-					{
-						numOfBalls--;
-					}
 				}
 			}
 			else
@@ -89,9 +84,11 @@ void Cannon::Shoot(float deltaTime)
 				cannonDirection = D3DXVECTOR3(cos(rotation), sin(rotation), 0.0f);
 				D3DXVECTOR3 offset = D3DXVECTOR3(cannonDirection.x, cannonDirection.y, 0.f) * texInfos->infos.Width;
 				ball = new Ball(GetPosition() + offset, rotation);
-				numOfBalls--;
 			}
 		}
-		std::cout << numOfBalls << std::endl;
 	}
  }
+void Cannon::Reset()
+{
+	ball->SetLives(3);
+}

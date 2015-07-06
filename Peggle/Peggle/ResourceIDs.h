@@ -7,12 +7,16 @@ namespace Texture
 	enum ID
 	{
 		BASKET,
-		RED_ORB,
-		BLUE_ORB,
+		END,
+		BLUEORB,
+		REDORB,
 		BALL,
 		CANNON,
 		BACKGROUND,
-		OVERLAY		
+		TITLE,
+		ONE,
+		TWO,
+		THREE
 	};
 }
 namespace Components
@@ -21,33 +25,11 @@ namespace Components
 	{
 		WALL,
 		BALL,
-		ORB,
+		BLUEORB,
+		REDORB,
 		BASKET,
 		BOTTOM
 	};
 }
-//namespace Sound
-//{
-//	enum ID
-//	{
-//		EnemyHit
-//	};
-//}
-//
-//namespace Music
-//{
-//	enum ID
-//	{
-//		TestMusic
-//	};
-//}
-//
-//namespace Font
-//{
-//	enum ID
-//	{
-//		Dialog
-//	};
-//}
 
 #endif 

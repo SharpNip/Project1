@@ -21,29 +21,30 @@ public:
 	~Ball();
 
 	void Update();
-	
-	void Desintegrate();
 	void Fire(D3DXVECTOR3 superPos, float newAngle);
+	void SetLives(int number){ lives = number; }
 
+	int QueryLives(){ return lives; }
 	bool InPlayQuery(){ return mInPlay; }
 	bool HitBasketQuery(){ return mHitBasket; }
 	
 private:
 	void Fall(float deltaTime);
+	void Desintegrate();
 	void CheckForCollision();
 
-	float speed;
 	float angle;
-
-	std::string check;
+	int lives;
 
 	bool applyGravity;
 	bool mInPlay;
 	bool mHitBasket;
 
+	const float SPEED;
 	const float RADIUS;
 	const float LEFT_WALL;
 	const float RIGHT_WALL;
+	const float BOTTOM;
 	
 	D3DXVECTOR3 mAnchor;
 	D3DXVECTOR2 mDirection;
@@ -53,5 +54,5 @@ private:
 
 
 #ifndef GRAVITY
-#define GRAVITY 09.82f
+#define GRAVITY 0.982f
 #endif

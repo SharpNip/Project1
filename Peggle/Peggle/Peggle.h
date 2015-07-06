@@ -22,16 +22,27 @@ public:
 	void Draw();
 	void Stop();
 
+	virtual void Reset();
+
 	int GetNumBalls(){ return cannon->GetRemBalls(); }
 
 private:
 	void LoadAssets();
-	void Reset();
+	void GameOver();
+	void Activate();
 
 	Basket* basket;
 	Cannon* cannon;
 	Background* background;
+	TitleScreen* title;
+	EndScreen* end;
 
-	// Static instance to check if the game has been officially started.
-	static bool gameStart;
+	std::vector<BlueOrb*> firstRow;
+	std::vector<BlueOrb*> secondRow;
+	std::vector<RedOrb*> blockers;
+
+	bool gameStart;
+	bool gameOver;
+
+	ID3DXFont *mFont;
 };

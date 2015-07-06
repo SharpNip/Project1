@@ -88,9 +88,11 @@
     <ClCompile Include="BlueOrb.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Collidable.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Overlay.cpp" />
     <ClCompile Include="Peggle.cpp" />
+    <ClCompile Include="RedOrb.cpp" />
+    <ClCompile Include="TitleScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -100,9 +102,11 @@
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="AllAssets.h" />
     <ClInclude Include="Collidable.h" />
-    <ClInclude Include="Overlay.h" />
+    <ClInclude Include="EndScreen.h" />
     <ClInclude Include="Peggle.h" />
+    <ClInclude Include="RedOrb.h" />
     <ClInclude Include="ResourceIDs.h" />
+    <ClInclude Include="TitleScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Bart_Project\src\App\App.vcxproj">

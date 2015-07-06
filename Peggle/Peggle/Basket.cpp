@@ -29,14 +29,6 @@ Basket::~Basket()
 void Basket::Update()
 {
 	Patrol(gTimer->GetDeltaTime());
-	if (gDInput->keyPressed(DIK_B))
-	{
-		std::cout << "Center X: " << GetPosition().x << " Center Y: " << GetPosition().y << std::endl;
-		std::cout << "Collider Left: " << collider->GetPosition().x << std::endl;
-		std::cout << "Collider Right: " << collider->GetPosition().x + collider->GetWidth() << std::endl;
-		std::cout << "Collider Up:" << collider->GetPosition().y << std::endl;
-		std::cout << "Collider Down:" << collider->GetPosition().y + collider->GetHeight() << std::endl;
-	}
 	
 }
 void Basket::Patrol(float deltaTime)

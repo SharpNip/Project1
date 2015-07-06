@@ -25,16 +25,19 @@ public:
 	void Update();
 
 	int GetRemBalls(){ return numOfBalls; }
+	void Reset();
+	
 
 private:
 	D3DXVECTOR3 mAnchor;
-	float rotation;
 	D3DXVECTOR3 cannonDirection;
-
-	void CheckAmmo(Ball* ball);
+	
+	float rotation;
 
 	int numOfBalls;
+	
 	Ball* ball;
+
 	// Constants for the Cannon
 	const float ROT_SPEED;
 	const float MAX_ROT_L;

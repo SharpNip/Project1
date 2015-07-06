@@ -1,6 +1,10 @@
 #ifndef ResourcesID
 #define ResourcesID
 
+////////////////////////////////////////////////////////
+// Resources ID:
+//		-> Used for the sprites and collision detection
+////////////////////////////////////////////////////////
 
 namespace Texture
 {
@@ -23,7 +27,6 @@ namespace Components
 {
 	enum ID
 	{
-		WALL,
 		BALL,
 		BLUEORB,
 		REDORB,

@@ -4,12 +4,18 @@
 Peggle::Peggle()
 	: gameStart(false)
 	, gameOver(false)
+	, ROW_ONE(-350)
+	, ROW_TWO(-300)
+	, ROW_THREE(-300)
 {
 	LoadAssets();
 
 	title	= new TitleScreen();
 	end		= new EndScreen();
 	end->SetVisible(false);
+	
+	// This is copied/pasted from the FontApp project we made. 
+	// I was too lazy to implement something more substantial right away
 	D3DXFONT_DESC fontDesc;
 	fontDesc.Height = 80;
 	fontDesc.Width = 40;
@@ -20,9 +26,7 @@ Peggle::Peggle()
 	fontDesc.PitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
 	fontDesc.Quality = DEFAULT_QUALITY;
 	strcpy_s(fontDesc.FaceName, _T("Times New Roman"));
-
 	D3DXCreateFontIndirect(gD3DDevice, &fontDesc, &mFont);
-
 }
 
 Peggle::~Peggle()
@@ -63,11 +67,11 @@ Peggle::~Peggle()
 	end = nullptr;
 
 }
-
+// Nothing here!
 void Peggle::Start()
 {
 }
-
+// This update checks for variations of game states through the 2 booleans in the class
 void Peggle::Update()
 {
 	if (gDInput->keyPressed(DIK_RETURN))
@@ -92,7 +96,7 @@ void Peggle::Update()
 		}
 	}
 }
-
+// Mainly takes care of drawing the "HUD" to tell the number of balls the player has remaining
 void Peggle::Draw()
 {
 	if (gameStart)
@@ -102,33 +106,29 @@ void Peggle::Draw()
 		switch (livesRemaining)
 		{
 		case 1:
-			
 			::GetClientRect(gApp->GetMainWindow(), &fontRect);
 			mFont->DrawTextA(0, _T("1"), -1, &fontRect, DT_LEFT | DT_TOP | DT_SINGLELINE, D3DCOLOR_XRGB(255, 255, 255));
 			break;
 		case 2:
-		
 			::GetClientRect(gApp->GetMainWindow(), &fontRect);
 			mFont->DrawTextA(0, _T("2"), -1, &fontRect, DT_LEFT | DT_TOP | DT_SINGLELINE, D3DCOLOR_XRGB(255, 255, 255));
 			break;
 		case 3:
-			
 			::GetClientRect(gApp->GetMainWindow(), &fontRect);
 			mFont->DrawTextA(0, _T("3"), -1, &fontRect, DT_LEFT | DT_TOP | DT_SINGLELINE, D3DCOLOR_XRGB(255, 255, 255));
 			break;
 		default:
-			
 			::GetClientRect(gApp->GetMainWindow(), &fontRect);
 			mFont->DrawTextA(0, _T(""), -1, &fontRect, DT_LEFT | DT_TOP | DT_SINGLELINE, D3DCOLOR_XRGB(255, 255, 255));
 			break;
 		}
-		
 	}
 }
-
+// Nothing Here!
 void Peggle::Stop()
 {
 }
+// This is used only to alleviate the constructor of the class
 void Peggle::LoadAssets()
 {
 	Textures->LoadTexture(Texture::BASKET, "Sprites/Basket.png");
@@ -140,6 +140,7 @@ void Peggle::LoadAssets()
 	Textures->LoadTexture(Texture::CANNON, "Sprites/Cannon.png");
 	Textures->LoadTexture(Texture::BACKGROUND, "Sprites/Background.png");
 }
+// Reset function used to set the game back to its original state
 void Peggle::Reset()
 {
 	for each(BlueOrb* blue in firstRow)
@@ -160,39 +161,38 @@ void Peggle::Reset()
 	basket->SetVisible(true);
 	end->SetVisible(false);
 	gameOver = false;
-	
 }
+// THis is called only the first time the game is created, allowing the title screen to remain "clean" of any gameplay bugs
 void Peggle::Activate()
 {
 	background = new Background();
 	cannon = new Cannon();
 	basket = new Basket();
-
-	int temp	= -350;
-	int temp2	= -300;
-	int temp3	= -300;
+	
+	int temp	= ROW_ONE;
+	int temp2	= ROW_TWO;
+	int temp3	= ROW_THREE;
 
 	for (int i = 0; i < 6; i++)
 	{
-		firstRow.push_back(new BlueOrb(D3DXVECTOR2(temp, -100)));
+		firstRow.push_back(new BlueOrb(D3DXVECTOR2((float)temp, -100.f)));
 		temp += gApp->GetParam().BackBufferWidth / 6;
-	
 	}
 
 	for (int i = 0; i < 4; i++)
 	{
-		secondRow.push_back(new BlueOrb(D3DXVECTOR2(temp2, -200)));
+		secondRow.push_back(new BlueOrb(D3DXVECTOR2((float)temp2, -200.f)));
 		temp2 += gApp->GetParam().BackBufferWidth / 4;
-
 	}
 
 	for (int i = 0; i < 4; i++)
 	{
-		blockers.push_back(new RedOrb(D3DXVECTOR2(temp3, 0)));
+		blockers.push_back(new RedOrb(D3DXVECTOR2((float)temp3, 0.f)));
 		temp3 += gApp->GetParam().BackBufferWidth / 4;
 	}
 	gameStart = true;
 }
+// Used when the END Screen is seen
 void Peggle::GameOver()
 {
 	background->SetVisible(false);
@@ -213,5 +213,4 @@ void Peggle::GameOver()
 	{
 		red->SetVisible(false);
 	}
-
 }

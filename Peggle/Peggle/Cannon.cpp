@@ -1,7 +1,7 @@
 #include "Cannon.h"
 #include "ResourceIDs.h"
 
-
+// Initialisation of all vairables to default values
 Cannon::Cannon()
 	: Sprite(Texture::ID::CANNON)
 	, cannonDirection(0, 0, 0)
@@ -21,13 +21,13 @@ Cannon::Cannon()
 	int height = gApp->GetParam().BackBufferHeight;
 	SetPosition(0.f, height/2);
 }
-
+// Destructor for the ball
 Cannon::~Cannon()
 {
 	delete ball;
 	ball = nullptr;
 }
-
+// This manages the cannon specific mechanics
 void Cannon::Update()
 {
 	Rotate(gTimer->GetDeltaTime());
@@ -37,6 +37,7 @@ void Cannon::Update()
 		numOfBalls = ball->QueryLives();
 	}
 }
+// Called in the update, used to rotate the cannon on from pivot point
 void Cannon::Rotate(float deltaTime)
 {
 	if (gDInput->keyDown(DIKEYBOARD_A))
@@ -62,8 +63,8 @@ void Cannon::Rotate(float deltaTime)
 		}
 	}
 	this->SetRotationRad(0, 0, rotation);
-	
 }
+// Function called when spacebar is pressed. Also checked in the update
 void Cannon::Shoot(float deltaTime)
 {
 	if (gDInput->keyPressed(DIKEYBOARD_SPACE))
@@ -88,6 +89,7 @@ void Cannon::Shoot(float deltaTime)
 		}
 	}
  }
+// Reset for when the end screen is seen
 void Cannon::Reset()
 {
 	ball->SetLives(3);

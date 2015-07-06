@@ -14,20 +14,24 @@ class BlueOrb :
 	public Collidable
 {
 public:
+	// Constructors / Destructor
 	BlueOrb();
 	BlueOrb(D3DXVECTOR2 position);
 	~BlueOrb();
 	
+	// Public methods, Reset is called to reset all the position
+	// Cracked is called through the Ball class to make the item disappear
 	void Update();
 	void Crack();
 	void Reset();
 
 private:
-	CCircle* collider;
-	D3DXVECTOR2 mPosition;
-	D3DXVECTOR3 mAnchor;
-
+	// Radius built with the width of the sprite
 	const float RADIUS;
+
+	// Collider for interaction with the player's balls (teehee) 
+	CCircle* collider;
+	
 
 };
 

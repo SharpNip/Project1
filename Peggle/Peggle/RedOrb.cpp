@@ -1,6 +1,5 @@
 #include "RedOrb.h"
 
-
 RedOrb::RedOrb()
 	: Collidable(Texture::ID::REDORB)
 	, RADIUS(GetTextureInfos()->infos.Width / 2)
@@ -9,8 +8,8 @@ RedOrb::RedOrb()
 RedOrb::RedOrb(D3DXVECTOR2 position)
 	: Collidable(Texture::ID::REDORB)
 	, RADIUS(GetTextureInfos()->infos.Width / 2)
-	, mPosition(position)
 {
+	mPosition = position;
 	this->SetID(Components::REDORB);
 	mAnchor = D3DXVECTOR3(GetTextureInfos()->infos.Height / 2, GetTextureInfos()->infos.Width / 2, 0);
 	this->Sprite::SetPivot(mAnchor);
@@ -20,11 +19,11 @@ RedOrb::RedOrb(D3DXVECTOR2 position)
 }
 RedOrb::~RedOrb()
 {
+	delete collider;
+	collider = nullptr;
 }
-
 void RedOrb::Update()
 {
-
 }
 void RedOrb::Reset()
 {

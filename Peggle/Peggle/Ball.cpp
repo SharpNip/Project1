@@ -1,5 +1,7 @@
 #include "Ball.h"
 
+// Awesome super class that checks all gameplay elements, including collision and other stuff
+
 Ball::Ball()
 	: Collidable(Texture::ID::BALL)
 	, SPEED(0)
@@ -16,7 +18,7 @@ Ball::Ball()
 	this->Sprite::SetPivot(mAnchor);
 	this->Sprite::SetPosition(0, 0);
 }
-
+// Secondary constructor, used to create all of the necessary elements
 Ball::Ball(D3DXVECTOR3 position, float angle)
 	: Collidable(Texture::ID::BALL)
 	, SPEED(100)
@@ -38,29 +40,26 @@ Ball::Ball(D3DXVECTOR3 position, float angle)
 	mInPlay = true;
 }
 
-
+// Destructor for the collider class
 Ball::~Ball()
 {
 	delete collider;
 	collider = nullptr;
 }
 
+// Updates the position and state of the ball
 void Ball::Update()
 {
-	float deltaTime = gTimer->GetDeltaTime();
-
-	Fall(deltaTime);
-	
+	Fall(gTimer->GetDeltaTime());	
 	CheckForCollision();
-
 }
-
+// This is called when the ball hits the bottom of the screen or the basket
 void Ball::Desintegrate()
 {
 	this->Sprite::SetVisible(false);
 	mInPlay = false;
 }
-
+// Called in the update to update the falling behavior of the ball, takes care of the collider too
 void Ball::Fall(float deltaTime)
 {
 	D3DXVECTOR3 currentPos = GetPosition();
@@ -93,6 +92,7 @@ void Ball::Fall(float deltaTime)
 	this->Sprite::SetPosition(currentPos.x, currentPos.y);
 	this->collider->SetPosition(currentPos.x,currentPos.y);
 }
+// Checks for any collisions with other objects using as system of "tags" (or component IDs)
 void Ball::CheckForCollision()
 {
 	for each (Collider* col in collider->LookForCollisions())
@@ -115,7 +115,7 @@ void Ball::CheckForCollision()
 		}
 	}
 }
-
+// Called when the cannon shoots the ball, but only on subsequent shots, after having instatiated the ball.
 void Ball::Fire(D3DXVECTOR3 superPos, float newAngle)
 {
 	this->Sprite::SetVisible(true);

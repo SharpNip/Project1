@@ -14,19 +14,22 @@ class RedOrb :
 	public Collidable
 {
 public:
+	// Constructors / Destructor
 	RedOrb();
 	RedOrb(D3DXVECTOR2 position);
 	~RedOrb();
 
+	// Public methods, only Reset is called outside of itself 
 	void Update();
 	void Reset();
 
 private:
-	CCircle* collider;
-	D3DXVECTOR2 mPosition;
-	D3DXVECTOR3 mAnchor;
-
+	// Radius built with the width of the sprite
 	const float RADIUS;
+
+	// Collider for interaction with the player's balls (teehee) 
+	CCircle* collider;
+	
 
 };
 

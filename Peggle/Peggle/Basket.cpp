@@ -1,5 +1,7 @@
 #include "Basket.h"
 
+// Everything pertaining to this class is fairly well explained in the Header file. Please go see that.
+
 Basket::Basket()
 	: Collidable(Texture::ID::BASKET)
 	, SPEED(100.0f)
@@ -29,7 +31,6 @@ Basket::~Basket()
 void Basket::Update()
 {
 	Patrol(gTimer->GetDeltaTime());
-	
 }
 void Basket::Patrol(float deltaTime)
 {

@@ -3,9 +3,9 @@
 #include "ResourceIDs.h"
 
 //////////////////////////////////////////////////////////////////
-// Background:
-//  ->	This takes care of creating and placing a background image
-//		Does not affect gameplay in any way
+// End Screen Class:
+//  ->	This takes care of creating and placing an image
+//		to show the end of the game, be it win or lose.
 //////////////////////////////////////////////////////////////////
 
 class EndScreen :

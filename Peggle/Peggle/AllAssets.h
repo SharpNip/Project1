@@ -1,5 +1,7 @@
 #pragma once
 
+// My library of headers, just so I can avoid a heafty main
+
 #include "Cannon.h"
 #include "Ball.h"
 #include "Basket.h"

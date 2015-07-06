@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include "Peggle.h"
 
+// THis is the main, which handles most of the necessary non-game related stuff
+
 int WINAPI _tWinMain(HINSTANCE hInstance, 
 	HINSTANCE prevHInstance, 
 	LPTSTR cmd, int showCmd)
